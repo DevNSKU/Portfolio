@@ -1,20 +1,35 @@
-import { FiPhone, FiMapPin, FiMail } from 'react-icons/fi';
+import { FiMapPin, FiMail, FiLinkedin, FiGithub, FiPhone } from 'react-icons/fi';
+import { profile } from '../../data/profileData';
 
 const contacts = [
 	{
 		id: 1,
-		name: 'Your Address, Your City, Your Country',
+		name: profile.location,
 		icon: <FiMapPin />,
 	},
 	{
 		id: 2,
-		name: 'email@domain.com',
+		name: profile.email,
 		icon: <FiMail />,
+		href: `mailto:${profile.email}`,
 	},
 	{
 		id: 3,
-		name: '555 8888 888',
+		name: profile.phone,
 		icon: <FiPhone />,
+		href: `tel:${profile.phone.replace(/\s/g, '')}`,
+	},
+	{
+		id: 4,
+		name: 'LinkedIn profile',
+		icon: <FiLinkedin />,
+		href: profile.linkedin,
+	},
+	{
+		id: 5,
+		name: 'github.com/DevNSKU',
+		icon: <FiGithub />,
+		href: profile.github,
 	},
 ];
 
@@ -31,9 +46,28 @@ function ContactDetails() {
 							<i className="text-2xl text-neutral-500 dark:text-neutral-400 mr-4 mt-1">
 								{contact.icon}
 							</i>
-							<span className="text-lg mb-4 text-ternary-dark dark:text-ternary-light">
-								{contact.name}
-							</span>
+							{contact.href ? (
+								<a
+									href={contact.href}
+									target={
+										contact.href.startsWith('http')
+											? '_blank'
+											: undefined
+									}
+									rel={
+										contact.href.startsWith('http')
+											? 'noopener noreferrer'
+											: undefined
+									}
+									className="text-lg mb-4 text-ternary-dark dark:text-ternary-light hover:text-indigo-500 dark:hover:text-indigo-400 duration-300"
+								>
+									{contact.name}
+								</a>
+							) : (
+								<span className="text-lg mb-4 text-ternary-dark dark:text-ternary-light">
+									{contact.name}
+								</span>
+							)}
 						</li>
 					))}
 				</ul>

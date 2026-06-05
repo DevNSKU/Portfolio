@@ -3,6 +3,7 @@ import { FiClock, FiTag } from 'react-icons/fi';
 import PagesMetaHead from '../../components/PagesMetaHead';
 import { projectsData } from '../../data/projectsData';
 import RelatedProjects from '../../components/projects/RelatedProjects';
+import { profile } from '../../data/profileData';
 
 function ProjectSingle(props) {
 	return (
@@ -67,7 +68,13 @@ function ProjectSingle(props) {
 										>
 											<span>{info.title}: </span>
 											<a
-												href="https://stoman.me"
+												href={
+													info.title === 'Website'
+														? profile.linkedin
+														: info.title === 'Phone'
+															? `tel:${info.details}`
+															: undefined
+												}
 												className={
 													info.title === 'Website' ||
 													info.title === 'Phone'

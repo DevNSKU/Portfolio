@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { FiSun, FiMoon, FiX, FiMenu } from 'react-icons/fi';
 import HireMeModal from '../HireMeModal';
-import logoLight from '../../public/images/logo-light.svg';
-import logoDark from '../../public/images/logo-dark.svg';
 import useThemeSwitcher from '../../hooks/useThemeSwitcher';
+import SiteLogo from './SiteLogo';
 
 function AppHeader() {
 	const [showMenu, setShowMenu] = useState(false);
@@ -47,25 +45,7 @@ function AppHeader() {
 				{/* Header menu links and small screen hamburger menu */}
 				<div className="flex justify-between items-center px-4 sm:px-0">
 					<div>
-						<Link href="/">
-							{activeTheme === 'dark' ? (
-								<Image
-									src={logoDark}
-									className="w-36 cursor-pointer"
-									alt="Dark Logo"
-									width={150}
-									height={120}
-								/>
-							) : (
-								<Image
-									src={logoLight}
-									className="w-36 cursor-pointer"
-									alt="Dark Logo"
-									width={150}
-									height={120}
-								/>
-							)}
-						</Link>
+						<SiteLogo />
 					</div>
 
 					{/* Theme switcher small screen */}

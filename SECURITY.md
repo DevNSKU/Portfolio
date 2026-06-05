@@ -1,5 +1,3 @@
-# Security Policy
+# Security
 
-## Reporting a Vulnerability
-
-Please report security issues to `realstoman@gmail.com`
+Report security issues to **nsvkumar334@gmail.com**.

@@ -1,19 +1,13 @@
-import Image from 'next/image';
 import { useState } from 'react';
 import { aboutMeData } from '../../data/aboutMeData';
+import ProfileAvatar from '../shared/ProfileAvatar';
 
 function AboutMeBio() {
-	const [aboutMe, setAboutMe] = useState(aboutMeData);
+	const [aboutMe] = useState(aboutMeData);
 	return (
 		<div className="block sm:flex sm:gap-10 mt-10 sm:mt-20">
-			<div className="w-full sm:w-1/4 mb-7 sm:mb-0">
-				<Image
-					src="/images/profile.jpeg"
-					width={200}
-					height={200}
-					className="rounded-lg"
-					alt="Profile Image"
-				/>
+			<div className="w-full sm:w-1/4 mb-7 sm:mb-0 flex justify-center sm:justify-start">
+				<ProfileAvatar size={200} />
 			</div>
 
 			<div className="font-general-regular w-full sm:w-3/4 text-left">

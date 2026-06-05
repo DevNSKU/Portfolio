@@ -5,25 +5,16 @@ import { projectsData } from '../../data/projectsData';
 import ProjectsFilter from './ProjectsFilter';
 
 function ProjectsGrid() {
-	const [searchProject, setSearchProject] = useState();
-	const [selectProject, setSelectProject] = useState();
+	const [searchProject, setSearchProject] = useState('');
+	const [selectProject, setSelectProject] = useState('');
 
-	// @todo - To be fixed
-	// const searchProjectsByTitle = projectsData.filter((item) => {
-	// 	const result = item.title
-	// 		.toLowerCase()
-	// 		.includes(searchProject.toLowerCase())
-	// 		? item
-	// 		: searchProject == ''
-	// 		? item
-	// 		: '';
-	// 	return result;
-	// });
-
-	const selectProjectsByCategory = projectsData.filter((item) => {
-		let category =
-			item.category.charAt(0).toUpperCase() + item.category.slice(1);
-		return category.includes(selectProject);
+	const filteredProjects = projectsData.filter((item) => {
+		const query = searchProject.trim().toLowerCase();
+		const matchesSearch =
+			query === '' || item.title.toLowerCase().includes(query);
+		const matchesCategory =
+			selectProject === '' || item.category === selectProject;
+		return matchesSearch && matchesCategory;
 	});
 
 	return (
@@ -107,13 +98,15 @@ function ProjectsGrid() {
 			</div>
 
 			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-6 sm:gap-5">
-				{selectProject
-					? selectProjectsByCategory.map((project, index) => {
-							return <ProjectSingle key={index} {...project} />;
-					  })
-					: projectsData.map((project, index) => (
-							<ProjectSingle key={index} {...project} />
-					  ))}
+				{filteredProjects.length > 0 ? (
+					filteredProjects.map((project) => (
+						<ProjectSingle key={project.id} {...project} />
+					))
+				) : (
+					<p className="col-span-full text-center text-secondary-dark dark:text-ternary-light py-10">
+						No projects match your search.
+					</p>
+				)}
 			</div>
 		</section>
 	);

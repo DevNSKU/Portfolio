@@ -1,767 +1,279 @@
 import { v4 as uuidv4 } from 'uuid';
-import {
-	FiFacebook,
-	FiInstagram,
-	FiLinkedin,
-	FiTwitter,
-	FiYoutube,
-} from 'react-icons/fi';
+
+const imgs = (hero, a = hero, b = hero) => [
+	{ id: uuidv4(), title: 'Project', img: a },
+	{ id: uuidv4(), title: 'Project', img: b },
+	{ id: uuidv4(), title: 'Project', img: hero },
+];
+
+function buildProject({
+	id,
+	title,
+	slug,
+	category,
+	img,
+	publishDate,
+	tags,
+	role,
+	organization,
+	objective,
+	techs,
+	details,
+}) {
+	return {
+		id,
+		title,
+		url: slug,
+		category,
+		img,
+		ProjectHeader: {
+			title,
+			publishDate,
+			tags,
+		},
+		ProjectImages: imgs(img, '/images/web-project-1.jpg', '/images/ui-project-2.jpg'),
+		ProjectInfo: {
+			ClientHeading: 'About project',
+			CompanyInfo: [
+				{ id: uuidv4(), title: 'Role', details: role },
+				{ id: uuidv4(), title: 'Organization', details: organization },
+			],
+			ObjectivesHeading: 'Overview',
+			ObjectivesDetails: objective,
+			Technologies: [
+				{
+					title: 'Stack & tools',
+					techs,
+				},
+			],
+			ProjectDetailsHeading: 'Key deliverables',
+			ProjectDetails: details.map((text) => ({
+				id: uuidv4(),
+				details: text,
+			})),
+			SocialSharingHeading: 'Share This',
+		},
+	};
+}
 
 export const projectsData = [
-	{
+	buildProject({
 		id: 1,
-		title: 'Google Health Platform',
-		url: 'google-health-platform',
-		category: 'Web Application',
-		img: '/images/web-project-2.jpg',
-		ProjectHeader: {
-			title: 'Google Health Platform',
-			publishDate: 'Jul 26, 2021',
-			tags: 'UI / Frontend',
-		},
-		ProjectImages: [
-			{
-				id: uuidv4(),
-				title: 'Google Health Platform',
-				img: '/images/ui-project-1.jpg',
-			},
-			{
-				id: uuidv4(),
-				title: 'Google Health Platform',
-				img: '/images/web-project-2.jpg',
-			},
-			{
-				id: uuidv4(),
-				title: 'Google Health Platform',
-				img: '/images/mobile-project-2.jpg',
-			},
-		],
-		ProjectInfo: {
-			ClientHeading: 'About Client',
-			CompanyInfo: [
-				{
-					id: uuidv4(),
-					title: 'Name',
-					details: 'Company Ltd',
-				},
-				{
-					id: uuidv4(),
-					title: 'Services',
-					details: 'Web Development',
-				},
-				{
-					id: uuidv4(),
-					title: 'Website',
-					details: 'https://company.com',
-				},
-				{
-					id: uuidv4(),
-					title: 'Phone',
-					details: '555 8888 888',
-				},
-			],
-			ObjectivesHeading: 'Objective',
-			ObjectivesDetails:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, natus! Quibusdam enim quod in esse, mollitia molestias incidunt quas ipsa accusamus veniam.',
-			Technologies: [
-				{
-					title: 'Tools & Technologies',
-					techs: [
-						'HTML',
-						'CSS',
-						'JavaScript',
-						'Vue.js',
-						'TailwindCSS',
-						'AdobeXD',
-					],
-				},
-			],
-			ProjectDetailsHeading: 'Challenge',
-			ProjectDetails: [
-				{
-					id: uuidv4(),
-					details:
-						'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil vel illum asperiores dignissimos cumque quibusdam et fugiat voluptatem nobis suscipit explicabo, eaque consequatur nesciunt, fugit eligendi corporis laudantium adipisci soluta? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt totam dolorum, ducimus obcaecati, voluptas facilis molestias nobis ut quam natus similique inventore excepturi optio ipsa deleniti fugit illo. Unde, amet! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum illo necessitatibus perspiciatis! Aperiam perferendis labore temporibus, eos culpa corporis recusandae quas, fuga voluptatibus nesciunt odit libero tenetur neque consequatur ea.',
-				},
-				{
-					id: uuidv4(),
-					details:
-						'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil vel illum asperiores dignissimos cumque quibusdam et fugiat voluptatem nobis suscipit explicabo, eaque consequatur nesciunt, fugit eligendi corporis laudantium adipisci soluta?',
-				},
-				{
-					id: uuidv4(),
-					details:
-						'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil vel illum asperiores dignissimos cumque quibusdam et fugiat voluptatem nobis suscipit explicabo, eaque consequatur nesciunt, fugit eligendi corporis laudantium adipisci soluta?',
-				},
-				{
-					id: uuidv4(),
-					details:
-						'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil vel illum asperiores dignissimos cumque quibusdam et fugiat voluptatem nobis suscipit explicabo, eaque consequatur nesciunt, fugit eligendi corporis laudantium adipisci soluta? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt totam dolorum, ducimus obcaecati, voluptas facilis molestias nobis ut quam natus similique inventore excepturi optio ipsa deleniti fugit illo. Unde, amet! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum illo necessitatibus perspiciatis! Aperiam perferendis labore temporibus, eos culpa corporis recusandae quas, fuga voluptatibus nesciunt odit libero tenetur neque consequatur ea.',
-				},
-			],
-			SocialSharingHeading: 'Share This',
-			// SocialSharing: [
-			// 	{
-			// 		id: uuidv4(),
-			// 		name: 'Twitter',
-			// 		icon: <FiTwitter />,
-			// 		url: 'https://twitter.com/realstoman',
-			// 	},
-			// 	{
-			// 		id: uuidv4(),
-			// 		name: 'Instagram',
-			// 		icon: <FiInstagram />,
-			// 		url: 'https://instagram.com/realstoman',
-			// 	},
-			// 	{
-			// 		id: uuidv4(),
-			// 		name: 'Facebook',
-			// 		icon: <FiFacebook />,
-			// 		url: 'https://facebook.com/',
-			// 	},
-			// 	{
-			// 		id: uuidv4(),
-			// 		name: 'LinkedIn',
-			// 		icon: <FiLinkedin />,
-			// 		url: 'https://linkedin.com/',
-			// 	},
-			// 	{
-			// 		id: uuidv4(),
-			// 		name: 'Youtube',
-			// 		icon: <FiYoutube />,
-			// 		url: 'https://www.youtube.com/c/StomanStudio',
-			// 	},
-			// ],
-		},
-	},
-	{
-		id: 2,
-		title: 'Phoenix Digital Agency',
-		url: 'phoenix-digital-agency',
-		category: 'Mobile Application',
-		img: '/images/mobile-project-2.jpg',
-		ProjectHeader: {
-			title: 'Phoenix Digital Agency',
-			publishDate: 'Jul 26, 2021',
-			tags: 'Mobile Application',
-		},
-		ProjectImages: [
-			{
-				id: uuidv4(),
-				title: 'Phoenix Digital Agency',
-				img: '/images/ui-project-1.jpg',
-			},
-			{
-				id: uuidv4(),
-				title: 'Phoenix Digital Agency',
-				img: '/images/web-project-2.jpg',
-			},
-			{
-				id: uuidv4(),
-				title: 'Phoenix Digital Agency',
-				img: '/images/mobile-project-2.jpg',
-			},
-		],
-		ProjectInfo: {
-			ClientHeading: 'About Client',
-			CompanyInfo: [
-				{
-					id: uuidv4(),
-					title: 'Name',
-					details: 'Company Ltd',
-				},
-				{
-					id: uuidv4(),
-					title: 'Services',
-					details: 'UI Design & Frontend Development',
-				},
-				{
-					id: uuidv4(),
-					title: 'Website',
-					details: 'https://company.com',
-				},
-				{
-					id: uuidv4(),
-					title: 'Phone',
-					details: '555 8888 888',
-				},
-			],
-			ObjectivesHeading: 'Objective',
-			ObjectivesDetails:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, natus! Quibusdam enim quod in esse, mollitia molestias incidunt quas ipsa accusamus veniam.',
-			Technologies: [
-				{
-					title: 'Tools & Technologies',
-					techs: [
-						'HTML',
-						'CSS',
-						'JavaScript',
-						'Vue.js',
-						'TailwindCSS',
-						'AdobeXD',
-					],
-				},
-			],
-			ProjectDetailsHeading: 'Challenge',
-			ProjectDetails: [
-				{
-					id: uuidv4(),
-					details:
-						'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil vel illum asperiores dignissimos cumque quibusdam et fugiat voluptatem nobis suscipit explicabo, eaque consequatur nesciunt, fugit eligendi corporis laudantium adipisci soluta? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt totam dolorum, ducimus obcaecati, voluptas facilis molestias nobis ut quam natus similique inventore excepturi optio ipsa deleniti fugit illo. Unde, amet! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum illo necessitatibus perspiciatis! Aperiam perferendis labore temporibus, eos culpa corporis recusandae quas, fuga voluptatibus nesciunt odit libero tenetur neque consequatur ea.',
-				},
-				{
-					id: uuidv4(),
-					details:
-						'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil vel illum asperiores dignissimos cumque quibusdam et fugiat voluptatem nobis suscipit explicabo, eaque consequatur nesciunt, fugit eligendi corporis laudantium adipisci soluta?',
-				},
-				{
-					id: uuidv4(),
-					details:
-						'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil vel illum asperiores dignissimos cumque quibusdam et fugiat voluptatem nobis suscipit explicabo, eaque consequatur nesciunt, fugit eligendi corporis laudantium adipisci soluta?',
-				},
-				{
-					id: uuidv4(),
-					details:
-						'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil vel illum asperiores dignissimos cumque quibusdam et fugiat voluptatem nobis suscipit explicabo, eaque consequatur nesciunt, fugit eligendi corporis laudantium adipisci soluta? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt totam dolorum, ducimus obcaecati, voluptas facilis molestias nobis ut quam natus similique inventore excepturi optio ipsa deleniti fugit illo. Unde, amet! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum illo necessitatibus perspiciatis! Aperiam perferendis labore temporibus, eos culpa corporis recusandae quas, fuga voluptatibus nesciunt odit libero tenetur neque consequatur ea.',
-				},
-			],
-			SocialSharingHeading: 'Share This',
-			// SocialSharing: [
-			// 	{
-			// 		id: uuidv4(),
-			// 		name: 'Twitter',
-			// 		icon: <FiTwitter />,
-			// 		url: 'https://twitter.com/realstoman',
-			// 	},
-			// 	{
-			// 		id: uuidv4(),
-			// 		name: 'Instagram',
-			// 		icon: <FiInstagram />,
-			// 		url: 'https://instagram.com/realstoman',
-			// 	},
-			// 	{
-			// 		id: uuidv4(),
-			// 		name: 'Facebook',
-			// 		icon: <FiFacebook />,
-			// 		url: 'https://facebook.com/',
-			// 	},
-			// 	{
-			// 		id: uuidv4(),
-			// 		name: 'LinkedIn',
-			// 		icon: <FiLinkedin />,
-			// 		url: 'https://linkedin.com/',
-			// 	},
-			// 	{
-			// 		id: uuidv4(),
-			// 		name: 'Youtube',
-			// 		icon: <FiYoutube />,
-			// 		url: 'https://www.youtube.com/c/StomanStudio',
-			// 	},
-			// ],
-		},
-	},
-	{
-		id: 3,
-		title: 'Project Management UI',
-		url: 'project-management-ui',
-		category: 'UI/UX Design',
-		img: '/images/ui-project-1.jpg',
-		ProjectHeader: {
-			title: 'Project Management UI',
-			publishDate: 'Jul 26, 2021',
-			tags: 'UI / Frontend',
-		},
-		ProjectImages: [
-			{
-				id: uuidv4(),
-				title: 'Kabul Project Management UI',
-				img: '/images/ui-project-1.jpg',
-			},
-			{
-				id: uuidv4(),
-				title: 'Kabul Project Management UI',
-				img: '/images/web-project-2.jpg',
-			},
-			{
-				id: uuidv4(),
-				title: 'Kabul Project Management UI',
-				img: '/images/mobile-project-2.jpg',
-			},
-		],
-		ProjectInfo: {
-			ClientHeading: 'About Client',
-			CompanyInfo: [
-				{
-					id: uuidv4(),
-					title: 'Name',
-					details: 'Company Ltd',
-				},
-				{
-					id: uuidv4(),
-					title: 'Services',
-					details: 'UI Design & Frontend Development',
-				},
-				{
-					id: uuidv4(),
-					title: 'Website',
-					details: 'https://company.com',
-				},
-				{
-					id: uuidv4(),
-					title: 'Phone',
-					details: '555 8888 888',
-				},
-			],
-			ObjectivesHeading: 'Objective',
-			ObjectivesDetails:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, natus! Quibusdam enim quod in esse, mollitia molestias incidunt quas ipsa accusamus veniam.',
-			Technologies: [
-				{
-					title: 'Tools & Technologies',
-					techs: [
-						'HTML',
-						'CSS',
-						'JavaScript',
-						'Vue.js',
-						'TailwindCSS',
-						'AdobeXD',
-					],
-				},
-			],
-			ProjectDetailsHeading: 'Challenge',
-			ProjectDetails: [
-				{
-					id: uuidv4(),
-					details:
-						'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil vel illum asperiores dignissimos cumque quibusdam et fugiat voluptatem nobis suscipit explicabo, eaque consequatur nesciunt, fugit eligendi corporis laudantium adipisci soluta? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt totam dolorum, ducimus obcaecati, voluptas facilis molestias nobis ut quam natus similique inventore excepturi optio ipsa deleniti fugit illo. Unde, amet! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum illo necessitatibus perspiciatis! Aperiam perferendis labore temporibus, eos culpa corporis recusandae quas, fuga voluptatibus nesciunt odit libero tenetur neque consequatur ea.',
-				},
-				{
-					id: uuidv4(),
-					details:
-						'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil vel illum asperiores dignissimos cumque quibusdam et fugiat voluptatem nobis suscipit explicabo, eaque consequatur nesciunt, fugit eligendi corporis laudantium adipisci soluta?',
-				},
-				{
-					id: uuidv4(),
-					details:
-						'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil vel illum asperiores dignissimos cumque quibusdam et fugiat voluptatem nobis suscipit explicabo, eaque consequatur nesciunt, fugit eligendi corporis laudantium adipisci soluta?',
-				},
-				{
-					id: uuidv4(),
-					details:
-						'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil vel illum asperiores dignissimos cumque quibusdam et fugiat voluptatem nobis suscipit explicabo, eaque consequatur nesciunt, fugit eligendi corporis laudantium adipisci soluta? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt totam dolorum, ducimus obcaecati, voluptas facilis molestias nobis ut quam natus similique inventore excepturi optio ipsa deleniti fugit illo. Unde, amet! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum illo necessitatibus perspiciatis! Aperiam perferendis labore temporibus, eos culpa corporis recusandae quas, fuga voluptatibus nesciunt odit libero tenetur neque consequatur ea.',
-				},
-			],
-			SocialSharingHeading: 'Share This',
-			// SocialSharing: [
-			// 	{
-			// 		id: uuidv4(),
-			// 		name: 'Twitter',
-			// 		icon: <FiTwitter />,
-			// 		url: 'https://twitter.com/realstoman',
-			// 	},
-			// 	{
-			// 		id: uuidv4(),
-			// 		name: 'Instagram',
-			// 		icon: <FiInstagram />,
-			// 		url: 'https://instagram.com/realstoman',
-			// 	},
-			// 	{
-			// 		id: uuidv4(),
-			// 		name: 'Facebook',
-			// 		icon: <FiFacebook />,
-			// 		url: 'https://facebook.com/',
-			// 	},
-			// 	{
-			// 		id: uuidv4(),
-			// 		name: 'LinkedIn',
-			// 		icon: <FiLinkedin />,
-			// 		url: 'https://linkedin.com/',
-			// 	},
-			// 	{
-			// 		id: uuidv4(),
-			// 		name: 'Youtube',
-			// 		icon: <FiYoutube />,
-			// 		url: 'https://www.youtube.com/c/StomanStudio',
-			// 	},
-			// ],
-		},
-	},
-	{
-		id: 4,
-		title: 'Cloud Storage Platform',
-		url: 'cloud-storage-platform',
-		category: 'UI/UX Design',
-		img: '/images/ui-project-2.jpg',
-		ProjectHeader: {
-			title: 'Cloud Storage Platform',
-			publishDate: 'Jul 26, 2021',
-			tags: 'Web & Cloud',
-		},
-		ProjectImages: [
-			{
-				id: uuidv4(),
-				title: 'Kabul Cloud Storage Platform',
-				img: '/images/ui-project-1.jpg',
-			},
-			{
-				id: uuidv4(),
-				title: 'Kabul Cloud Storage Platform',
-				img: '/images/web-project-2.jpg',
-			},
-			{
-				id: uuidv4(),
-				title: 'Kabul Cloud Storage Platform',
-				img: '/images/mobile-project-2.jpg',
-			},
-		],
-		ProjectInfo: {
-			ClientHeading: 'About Client',
-			CompanyInfo: [
-				{
-					id: uuidv4(),
-					title: 'Name',
-					details: 'Company Ltd',
-				},
-				{
-					id: uuidv4(),
-					title: 'Services',
-					details: 'UI Design & Frontend Development',
-				},
-				{
-					id: uuidv4(),
-					title: 'Website',
-					details: 'https://company.com',
-				},
-				{
-					id: uuidv4(),
-					title: 'Phone',
-					details: '555 8888 888',
-				},
-			],
-			ObjectivesHeading: 'Objective',
-			ObjectivesDetails:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, natus! Quibusdam enim quod in esse, mollitia molestias incidunt quas ipsa accusamus veniam.',
-			Technologies: [
-				{
-					title: 'Tools & Technologies',
-					techs: [
-						'HTML',
-						'CSS',
-						'JavaScript',
-						'Vue.js',
-						'TailwindCSS',
-						'AdobeXD',
-					],
-				},
-			],
-			ProjectDetailsHeading: 'Challenge',
-			ProjectDetails: [
-				{
-					id: uuidv4(),
-					details:
-						'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil vel illum asperiores dignissimos cumque quibusdam et fugiat voluptatem nobis suscipit explicabo, eaque consequatur nesciunt, fugit eligendi corporis laudantium adipisci soluta? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt totam dolorum, ducimus obcaecati, voluptas facilis molestias nobis ut quam natus similique inventore excepturi optio ipsa deleniti fugit illo. Unde, amet! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum illo necessitatibus perspiciatis! Aperiam perferendis labore temporibus, eos culpa corporis recusandae quas, fuga voluptatibus nesciunt odit libero tenetur neque consequatur ea.',
-				},
-				{
-					id: uuidv4(),
-					details:
-						'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil vel illum asperiores dignissimos cumque quibusdam et fugiat voluptatem nobis suscipit explicabo, eaque consequatur nesciunt, fugit eligendi corporis laudantium adipisci soluta?',
-				},
-				{
-					id: uuidv4(),
-					details:
-						'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil vel illum asperiores dignissimos cumque quibusdam et fugiat voluptatem nobis suscipit explicabo, eaque consequatur nesciunt, fugit eligendi corporis laudantium adipisci soluta?',
-				},
-				{
-					id: uuidv4(),
-					details:
-						'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil vel illum asperiores dignissimos cumque quibusdam et fugiat voluptatem nobis suscipit explicabo, eaque consequatur nesciunt, fugit eligendi corporis laudantium adipisci soluta? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt totam dolorum, ducimus obcaecati, voluptas facilis molestias nobis ut quam natus similique inventore excepturi optio ipsa deleniti fugit illo. Unde, amet! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum illo necessitatibus perspiciatis! Aperiam perferendis labore temporibus, eos culpa corporis recusandae quas, fuga voluptatibus nesciunt odit libero tenetur neque consequatur ea.',
-				},
-			],
-			SocialSharingHeading: 'Share This',
-			// SocialSharing: [
-			// 	{
-			// 		id: uuidv4(),
-			// 		name: 'Twitter',
-			// 		icon: <FiTwitter />,
-			// 		url: 'https://twitter.com/realstoman',
-			// 	},
-			// 	{
-			// 		id: uuidv4(),
-			// 		name: 'Instagram',
-			// 		icon: <FiInstagram />,
-			// 		url: 'https://instagram.com/realstoman',
-			// 	},
-			// 	{
-			// 		id: uuidv4(),
-			// 		name: 'Facebook',
-			// 		icon: <FiFacebook />,
-			// 		url: 'https://facebook.com/',
-			// 	},
-			// 	{
-			// 		id: uuidv4(),
-			// 		name: 'LinkedIn',
-			// 		icon: <FiLinkedin />,
-			// 		url: 'https://linkedin.com/',
-			// 	},
-			// 	{
-			// 		id: uuidv4(),
-			// 		name: 'Youtube',
-			// 		icon: <FiYoutube />,
-			// 		url: 'https://www.youtube.com/c/StomanStudio',
-			// 	},
-			// ],
-		},
-	},
-	{
-		id: 5,
-		title: 'WeTalk Social Application',
-		url: 'wetalk-social-app',
-		category: 'Mobile Application',
-		img: '/images/mobile-project-1.jpg',
-		ProjectHeader: {
-			title: 'WeTalk Social Application',
-			publishDate: 'Jul 26, 2021',
-			tags: 'UI / Frontend',
-		},
-		ProjectImages: [
-			{
-				id: uuidv4(),
-				title: 'WeTalk Social Application',
-				img: '/images/ui-project-1.jpg',
-			},
-			{
-				id: uuidv4(),
-				title: 'WeTalk Social Application',
-				img: '/images/web-project-2.jpg',
-			},
-			{
-				id: uuidv4(),
-				title: 'WeTalk Social Application',
-				img: '/images/mobile-project-2.jpg',
-			},
-		],
-		ProjectInfo: {
-			ClientHeading: 'About Client',
-			CompanyInfo: [
-				{
-					id: uuidv4(),
-					title: 'Name',
-					details: 'Company Ltd',
-				},
-				{
-					id: uuidv4(),
-					title: 'Services',
-					details: 'UI Design & Frontend Development',
-				},
-				{
-					id: uuidv4(),
-					title: 'Website',
-					details: 'https://company.com',
-				},
-				{
-					id: uuidv4(),
-					title: 'Phone',
-					details: '555 8888 888',
-				},
-			],
-			ObjectivesHeading: 'Objective',
-			ObjectivesDetails:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, natus! Quibusdam enim quod in esse, mollitia molestias incidunt quas ipsa accusamus veniam.',
-			Technologies: [
-				{
-					title: 'Tools & Technologies',
-					techs: [
-						'HTML',
-						'CSS',
-						'JavaScript',
-						'Vue.js',
-						'TailwindCSS',
-						'AdobeXD',
-					],
-				},
-			],
-			ProjectDetailsHeading: 'Challenge',
-			ProjectDetails: [
-				{
-					id: uuidv4(),
-					details:
-						'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil vel illum asperiores dignissimos cumque quibusdam et fugiat voluptatem nobis suscipit explicabo, eaque consequatur nesciunt, fugit eligendi corporis laudantium adipisci soluta? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt totam dolorum, ducimus obcaecati, voluptas facilis molestias nobis ut quam natus similique inventore excepturi optio ipsa deleniti fugit illo. Unde, amet! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum illo necessitatibus perspiciatis! Aperiam perferendis labore temporibus, eos culpa corporis recusandae quas, fuga voluptatibus nesciunt odit libero tenetur neque consequatur ea.',
-				},
-				{
-					id: uuidv4(),
-					details:
-						'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil vel illum asperiores dignissimos cumque quibusdam et fugiat voluptatem nobis suscipit explicabo, eaque consequatur nesciunt, fugit eligendi corporis laudantium adipisci soluta?',
-				},
-				{
-					id: uuidv4(),
-					details:
-						'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil vel illum asperiores dignissimos cumque quibusdam et fugiat voluptatem nobis suscipit explicabo, eaque consequatur nesciunt, fugit eligendi corporis laudantium adipisci soluta?',
-				},
-				{
-					id: uuidv4(),
-					details:
-						'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil vel illum asperiores dignissimos cumque quibusdam et fugiat voluptatem nobis suscipit explicabo, eaque consequatur nesciunt, fugit eligendi corporis laudantium adipisci soluta? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt totam dolorum, ducimus obcaecati, voluptas facilis molestias nobis ut quam natus similique inventore excepturi optio ipsa deleniti fugit illo. Unde, amet! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum illo necessitatibus perspiciatis! Aperiam perferendis labore temporibus, eos culpa corporis recusandae quas, fuga voluptatibus nesciunt odit libero tenetur neque consequatur ea.',
-				},
-			],
-			SocialSharingHeading: 'Share This',
-			// SocialSharing: [
-			// 	{
-			// 		id: uuidv4(),
-			// 		name: 'Twitter',
-			// 		icon: <FiTwitter />,
-			// 		url: 'https://twitter.com/realstoman',
-			// 	},
-			// 	{
-			// 		id: uuidv4(),
-			// 		name: 'Instagram',
-			// 		icon: <FiInstagram />,
-			// 		url: 'https://instagram.com/realstoman',
-			// 	},
-			// 	{
-			// 		id: uuidv4(),
-			// 		name: 'Facebook',
-			// 		icon: <FiFacebook />,
-			// 		url: 'https://facebook.com/',
-			// 	},
-			// 	{
-			// 		id: uuidv4(),
-			// 		name: 'LinkedIn',
-			// 		icon: <FiLinkedin />,
-			// 		url: 'https://linkedin.com/',
-			// 	},
-			// 	{
-			// 		id: uuidv4(),
-			// 		name: 'Youtube',
-			// 		icon: <FiYoutube />,
-			// 		url: 'https://www.youtube.com/c/realstoman',
-			// 	},
-			// ],
-		},
-	},
-	{
-		id: 6,
-		title: 'Apple New Design System',
-		url: 'apple-new-design-system',
+		title: 'HRMS Multi-Tenant SaaS Migration',
+		slug: 'hrms-multi-tenant-saas',
 		category: 'Web Application',
 		img: '/images/web-project-1.jpg',
-		ProjectHeader: {
-			title: 'Apple New Design System',
-			publishDate: 'Jul 26, 2021',
-			tags: 'UI / Frontend',
-		},
-		ProjectImages: [
-			{
-				id: uuidv4(),
-				title: 'Kabul Apple New Design System',
-				img: '/images/ui-project-1.jpg',
-			},
-			{
-				id: uuidv4(),
-				title: 'Kabul Apple New Design System',
-				img: '/images/web-project-2.jpg',
-			},
-			{
-				id: uuidv4(),
-				title: 'Kabul Apple New Design System',
-				img: '/images/mobile-project-2.jpg',
-			},
+		publishDate: '2024 – Present',
+		tags: 'Laravel · SaaS · AWS',
+		role: 'Senior Backend Engineer',
+		organization: 'Petrocon Engineers & Consultants',
+		objective:
+			'Migrate a 117-table monolithic HRMS into a dedicated-database-per-tenant SaaS architecture with full isolation and zero data loss.',
+		techs: [
+			'Laravel 11',
+			'MySQL',
+			'stancl/tenancy',
+			'REST API',
+			'AWS',
+			'Redis',
+			'Queues',
 		],
-		ProjectInfo: {
-			ClientHeading: 'About Client',
-			CompanyInfo: [
-				{
-					id: uuidv4(),
-					title: 'Name',
-					details: 'Company Ltd',
-				},
-				{
-					id: uuidv4(),
-					title: 'Services',
-					details: 'UI Design & Frontend Development',
-				},
-				{
-					id: uuidv4(),
-					title: 'Website',
-					details: 'https://company.com',
-				},
-				{
-					id: uuidv4(),
-					title: 'Phone',
-					details: '555 8888 888',
-				},
-			],
-			ObjectivesHeading: 'Objective',
-			ObjectivesDetails:
-				'Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, natus! Quibusdam enim quod in esse, mollitia molestias incidunt quas ipsa accusamus veniam.',
-			Technologies: [
-				{
-					title: 'Tools & Technologies',
-					techs: [
-						'HTML',
-						'CSS',
-						'JavaScript',
-						'Vue.js',
-						'TailwindCSS',
-						'AdobeXD',
-					],
-				},
-			],
-			ProjectDetailsHeading: 'Challenge',
-			ProjectDetails: [
-				{
-					id: uuidv4(),
-					details:
-						'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil vel illum asperiores dignissimos cumque quibusdam et fugiat voluptatem nobis suscipit explicabo, eaque consequatur nesciunt, fugit eligendi corporis laudantium adipisci soluta? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt totam dolorum, ducimus obcaecati, voluptas facilis molestias nobis ut quam natus similique inventore excepturi optio ipsa deleniti fugit illo. Unde, amet! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum illo necessitatibus perspiciatis! Aperiam perferendis labore temporibus, eos culpa corporis recusandae quas, fuga voluptatibus nesciunt odit libero tenetur neque consequatur ea.',
-				},
-				{
-					id: uuidv4(),
-					details:
-						'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil vel illum asperiores dignissimos cumque quibusdam et fugiat voluptatem nobis suscipit explicabo, eaque consequatur nesciunt, fugit eligendi corporis laudantium adipisci soluta?',
-				},
-				{
-					id: uuidv4(),
-					details:
-						'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil vel illum asperiores dignissimos cumque quibusdam et fugiat voluptatem nobis suscipit explicabo, eaque consequatur nesciunt, fugit eligendi corporis laudantium adipisci soluta?',
-				},
-				{
-					id: uuidv4(),
-					details:
-						'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil vel illum asperiores dignissimos cumque quibusdam et fugiat voluptatem nobis suscipit explicabo, eaque consequatur nesciunt, fugit eligendi corporis laudantium adipisci soluta? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt totam dolorum, ducimus obcaecati, voluptas facilis molestias nobis ut quam natus similique inventore excepturi optio ipsa deleniti fugit illo. Unde, amet! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum illo necessitatibus perspiciatis! Aperiam perferendis labore temporibus, eos culpa corporis recusandae quas, fuga voluptatibus nesciunt odit libero tenetur neque consequatur ea.',
-				},
-			],
-			SocialSharingHeading: 'Share This',
-			// SocialSharing: [
-			// 	{
-			// 		id: uuidv4(),
-			// 		name: 'Twitter',
-			// 		icon: <FiTwitter />,
-			// 		url: 'https://twitter.com/realstoman',
-			// 	},
-			// 	{
-			// 		id: uuidv4(),
-			// 		name: 'Instagram',
-			// 		icon: <FiInstagram />,
-			// 		url: 'https://instagram.com/realstoman',
-			// 	},
-			// 	{
-			// 		id: uuidv4(),
-			// 		name: 'Facebook',
-			// 		icon: <FiFacebook />,
-			// 		url: 'https://facebook.com/',
-			// 	},
-			// 	{
-			// 		id: uuidv4(),
-			// 		name: 'LinkedIn',
-			// 		icon: <FiLinkedin />,
-			// 		url: 'https://linkedin.com/',
-			// 	},
-			// 	{
-			// 		id: uuidv4(),
-			// 		name: 'Youtube',
-			// 		icon: <FiYoutube />,
-			// 		url: 'https://www.youtube.com/c/StomanStudio',
-			// 	},
-			// ],
-		},
-	},
+		details: [
+			'Implemented subdomain routing, TenantMiddleware, and per-tenant databases using stancl/tenancy.',
+			'Covered attendance, leave, payroll, IT tickets, and employee portal modules.',
+			'Migrated 117 tables with zero data loss and complete cross-tenant isolation.',
+		],
+	}),
+	buildProject({
+		id: 8,
+		title: 'LevityX — Shop Management System (Odoo 19)',
+		slug: 'levityx-shop-management-odoo19',
+		category: 'Web Application',
+		img: '/images/ui-project-1.jpg',
+		publishDate: 'Personal project · 2026 – Present',
+		tags: 'Odoo 19 · POS · Personal · Current',
+		role: 'Founder & Developer',
+		organization: 'My own product (not client work)',
+		objective:
+			'My own general-store product on Odoo 19 — retail POS, credit (Udhaar) tracking, customer history, and WhatsApp billing. Built independently alongside my day job.',
+		techs: [
+			'Odoo 19',
+			'Odoo Community POS',
+			'Python',
+			'XML',
+			'QWeb',
+			'PostgreSQL',
+			'WhatsApp Business API',
+		],
+		details: [
+			'Odoo 19 POS checkout with a custom credit (Udhaar) tracking module for store accounts.',
+			'WhatsApp bill delivery to customers — replacing reliance on thermal printer receipts.',
+			'Digital customer database with purchase history; Flutter customer app and delivery module in progress.',
+		],
+	}),
+	buildProject({
+		id: 2,
+		title: 'Social Mobile App — Freelance Backend',
+		slug: 'freelance-social-mobile-backend',
+		category: 'Mobile Application',
+		img: '/images/mobile-project-2.jpg',
+		publishDate: 'Freelance · 2026',
+		tags: 'Flutter · FastAPI · AWS S3',
+		role: 'Freelance Backend Engineer',
+		organization: 'Confidential client',
+		objective:
+			'Backend for a Flutter social mobile app — REST APIs, real-time chat, media uploads, and push notifications.',
+		techs: [
+			'Flutter (client)',
+			'FastAPI',
+			'PostgreSQL',
+			'AWS S3',
+			'Redis Pub/Sub',
+			'WebSockets',
+			'JWT',
+			'Firebase FCM',
+			'AWS EC2',
+		],
+		details: [
+			'Async REST APIs with JWT authentication; media stored on AWS S3 (not third-party CDNs).',
+			'WebSocket chat with Redis Pub/Sub for scalable real-time messaging.',
+			'APIs designed for the Flutter app — auth, profiles, posts, stories, chat, and FCM notifications.',
+		],
+	}),
+	buildProject({
+		id: 3,
+		title: 'Feedygo — Food Delivery Platform',
+		slug: 'feedygo-food-delivery',
+		category: 'Mobile & Web Application',
+		img: '/images/mobile-project-2.jpg',
+		publishDate: '2024',
+		tags: 'Flutter · Laravel · Admin · POS',
+		role: 'Backend Engineer',
+		organization: 'Petrocon / Product team',
+		objective:
+			'Full-stack food delivery platform — Flutter mobile apps for customers and delivery partners, Laravel admin dashboard for operations, plus POS and OTP integrations.',
+		techs: [
+			'Flutter (mobile)',
+			'Laravel 11 (admin APIs)',
+			'Petpooja POS',
+			'MSG91',
+			'MySQL',
+			'Redis',
+			'AWS',
+			'REST API',
+		],
+		details: [
+			'Flutter mobile apps for ordering and delivery — REST APIs for menus, checkout, and live order tracking.',
+			'Admin dashboard (web) for restaurants, orders, partners, and platform configuration.',
+			'Petpooja POS sync, MSG91 OTP auth, and AWS-backed queues for notifications and status updates.',
+		],
+	}),
+	buildProject({
+		id: 4,
+		title: 'Darmadar — Animal Transport Platform',
+		slug: 'darmadar-transport',
+		category: 'Mobile & Web Application',
+		img: '/images/mobile-project-1.jpg',
+		publishDate: '2025',
+		tags: 'Flutter · Laravel · Admin · WebSockets',
+		role: 'Senior Backend Engineer',
+		organization: 'Petrocon Engineers & Consultants',
+		objective:
+			'Three-sided transport marketplace — Flutter apps for customers and drivers, Laravel admin dashboard for dispatch and oversight, with live GPS and payments.',
+		techs: [
+			'Flutter (mobile)',
+			'Laravel 11 (admin APIs)',
+			'Laravel Reverb',
+			'WebSockets',
+			'Razorpay',
+			'MSG91',
+			'Google Maps API',
+			'MySQL',
+		],
+		details: [
+			'Customer and driver Flutter apps — booking, OTP-verified delivery, Razorpay payments, and live trip status.',
+			'Admin dashboard (web) for bookings, drivers, pricing, and operational control.',
+			'Real-time driver GPS via WebSockets (5s updates) and Haversine-based assignment with Google Maps.',
+		],
+	}),
+	buildProject({
+		id: 5,
+		title: 'RSL — Enterprise Web Application (Odoo 18/19)',
+		slug: 'rsl-enterprise-web',
+		category: 'Web Application',
+		img: '/images/web-project-2.jpg',
+		publishDate: '2025 – Present',
+		tags: 'Odoo 18/19 · Python · AWS',
+		role: 'Senior Backend Engineer',
+		organization: 'Petrocon Engineers & Consultants',
+		objective:
+			'Backend and ERP layer for the RSL enterprise web platform — custom Odoo modules, secure workflows, and production PDF reporting.',
+		techs: [
+			'Odoo 18/19',
+			'Python',
+			'XML views',
+			'QWeb',
+			'PostgreSQL',
+			'Record rules',
+			'AWS EC2',
+		],
+		details: [
+			'Custom Python models with _inherit view inheritance across existing modules.',
+			'ORM workflows, QWeb PDF reports, and record-level security for multi-role access.',
+			'Deployed on AWS with upgrade-safe XML inheritance for Odoo 18 → 19.',
+		],
+	}),
+	buildProject({
+		id: 6,
+		title: 'Dental Clinic Management (Odoo 16/17)',
+		slug: 'dental-clinic-odoo',
+		category: 'Web Application',
+		img: '/images/ui-project-1.jpg',
+		publishDate: '2023 – 2024',
+		tags: 'Odoo 16/17 · Python',
+		role: 'Software Engineer',
+		organization: 'Invenger Cloud',
+		objective:
+			'Deliver a complete clinic management module in Odoo with appointments, prescriptions, billing, and patient engagement.',
+		techs: [
+			'Odoo 16/17',
+			'Python',
+			'XML views',
+			'QWeb',
+			'PostgreSQL',
+			'WhatsApp Business API',
+			'AWS',
+		],
+		details: [
+			'Built appointments, prescriptions, billing, and QWeb PDF report templates.',
+			'WhatsApp Business API reminders via Odoo messaging to reduce no-shows.',
+			'XML view inheritance across six modules for safe upgrades from v16 to v17.',
+		],
+	}),
+	buildProject({
+		id: 7,
+		title: 'Furniture Vendor System — Odoo 19',
+		slug: 'furniture-vendor-odoo',
+		category: 'Web Application',
+		img: '/images/ui-project-2.jpg',
+		publishDate: 'Freelance · 2026 – Present',
+		tags: 'Odoo 19 · Freelance · ERP',
+		role: 'Freelance Odoo Developer',
+		organization: 'Freelance client',
+		objective:
+			'Freelance Odoo 19 engagement — furniture vendor workflow with multi-role access, invoicing, and customer portal.',
+		techs: [
+			'Odoo 19',
+			'Python',
+			'XML',
+			'QWeb',
+			'PostgreSQL',
+			'AWS EC2',
+		],
+		details: [
+			'Four-role workflow: Customer, Supervisor, Vendor, and Admin.',
+			'12-state order lifecycle with advance and final invoice automation.',
+			'Customer portal, production tracking, QWeb PDF reports, and record-level security.',
+		],
+	}),
 ];

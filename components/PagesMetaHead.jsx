@@ -10,16 +10,18 @@ function PagesMetaHead({ title, keywords, description }) {
 			<meta name="keywords" content={keywords} />
 			<meta name="description" content={description} />
 			<meta charSet="utf-8" />
-			<link rel="icon" href="/favicon.ico" />
+			<link rel="icon" href="/favicon.png" />
 			<title>{title}</title>
 		</Head>
 	);
 }
 
 PagesMetaHead.defaultProps = {
-	title: 'Next.js & TailwindCSS Portfolio Project',
-	keywords: 'next.js, react, web, ui',
-	keywords: 'Simple and multi-page next.js and react application',
+	title: 'Nikil S Kumar | Portfolio',
+	keywords:
+		'Nikil S Kumar, software engineer, Odoo, Laravel, Python, AWS, portfolio',
+	description:
+		'Nikil S Kumar — Senior Backend Engineer (Python, FastAPI, Odoo, AWS). APIs, ERP, SaaS. Open to remote and freelance work.',
 };
 
 export default PagesMetaHead;
